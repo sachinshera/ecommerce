@@ -1,0 +1,55 @@
+*:focus{
+    box-shadow:none !important;
+}
+/* sidebar coding  */
+.sidebar{
+    width: 15%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh !important;
+    overflow: auto;
+    background-color: white;
+    box-shadow: 3px 5px 10px #ccc;
+    padding:1% 1%;
+}
+.sidebar ul{
+    list-style: none;
+    border-left: 1px solid #ccc;
+    padding:0;
+}
+.sidebar ul li{
+    padding:10px 20px;
+}
+.sidebar ul li:hover{
+    cursor: pointer;
+    border: 1px solid #ccc;
+   
+}
+
+
+/* sidebar coding  */
+/* page coding */
+.page{
+    width: 85% !important;
+    background-color: white;
+    box-shadow: 3px 5px 10px #ccc;
+    padding:1% 1%;
+    height: 100vh;
+    margin-left: 15% !important;
+
+}
+.page .card{
+    box-shadow: 0px 2px 15px 0px #ccc !important;
+    border-radius:5px !important;
+    border: none !important;
+}
+.page .card-content{
+    border-radius: 5px !important;
+}
+.page .card-header{
+    border-radius: 5px !important;
+    background-color:white !important;
+    border: none !important;
+}
+/* page coding */

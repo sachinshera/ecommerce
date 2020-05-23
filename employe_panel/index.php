@@ -13,13 +13,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU=" crossorigin="anonymous" /> <!-- css and js cdn  -->
     <!-- css and js cdn -->
+    <!-- ext css -->
+    <link rel="stylesheet" href="css/index.css">
+    <!-- ext css -->
+
 
     <title>Ecommerce project</title>
 </head>
 
 <body>
-    <div class="jumbotron">
-        <h1 class=" animated slideInLeft">sjhfgdsg</h1>
+    <div class="container-fluid">
+        <!-- slide bar coding  -->
+        <div class="sidebar">
+            <button type="button" class="btn stock_btn bg-white w-100 text-left" style="font-size:20px" data-toggle="collapse" data-target="#stock_list">
+                <i class="fa fa-shopping-cart"></i>
+                Stock Update
+                <i class="fa fa-angle-down ml-2"></i>
+            </button>
+            <ul class="collapse  show " id="stock_list">
+                <li class="collapse-item" data-url="create_category.php">Create catogories</li>
+                <li class="collapse-item" data-url="create_brands.php">Create brands</li>
+                <li class="collapse-item" data-url="create_products.php">Create products</li>
+
+            </ul>
+        </div>
+        <!-- slide bar coding -->
+        <!-- page coding  -->
+        <div class="page">
+            <div class="container" id="dyn_page">
+            </div>
+        </div>
+        <!-- page coding  -->
+
     </div>
     <!-- ext js page  -->
     <script src="js/index.js"> </script>

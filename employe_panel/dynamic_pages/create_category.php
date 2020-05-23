@@ -4,7 +4,7 @@ echo '  <div class="row animated fadeIn">
     <div class="card border-0">
         <div class="card-content border-0">
             <div class="card-header bg-white border-0">
-                <i class="fa fa-spinner  close"></i>
+                <i class="fa fa-spinner fa-spin close"></i>
                 <h5>Create Category</h5>
             </div>
             <div class="card-body">

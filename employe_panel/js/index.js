@@ -46,8 +46,28 @@ function requestPages(url) {
                     data: {
                         data: obj
                     },
+                    beforeSend: function () {
+                        $("#header_spinner").removeClass("d-none");
+                    },
                     success: function (response) {
-                        document.write(response);
+                        if (response.trim() == "your data has been saved successfully") {
+                            var design = '<div class="alert alert-success mt-3">  ' + response + ' <i class="fa fa-times close float-right" data-dismiss="alert"> </i> </div>';
+                            $("#category_msg").html(design);
+                        }
+                        else if (response.trim() = "your data has not, please try again later !") {
+                            var design = '<div class="alert alert-warning mt-3">  ' + response + ' <i class="fa fa-times close float-right" data-dismiss="alert"> </i> </div>';
+                            $("#category_msg").html(design);
+                        }
+                        else {
+                            var design = '<div class="alert alert-warning mt-3"> somthing went wrong plese contact your administrator   <i class="fa fa-times close float-right" data-dismiss="alert"> </i> </div>';
+                            $("#category_msg").html(design);
+                        }
+                        $("#header_spinner").addClass("d-none");
+                        setTimeout(function () {
+                            $("#category_msg").html("");
+                            $("#category_form").trigger("reset");
+                            $("#add_input").html("");
+                        }, 4000)
                     }
                 })
             })

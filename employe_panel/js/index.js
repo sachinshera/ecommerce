@@ -74,3 +74,20 @@ function requestPages(url) {
         }
     })
 }
+// retrive category list
+setTimeout(function () {
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "php/category_list.php",
+            success: function (response) {
+                var category_list = JSON.parse(response);
+                for (var i = 0; i < category_list.length; i++) {
+                    var id = category_list[i].id;
+                    var cat_name = category_list[i].category_name;
+                    $(".category_list").append('<div clas="list-group">  <div class="list-group-item my-2">  <span class="mr-3"> ' + id + ' </span> ' + cat_name + '  <span class="fa fa-trash close mx-2" style="font-size:20px"> </span> <span class="fa fa-edit close mx-2" style="font-size:20px"> </span>  </div> </div>');
+                }
+            }
+        });
+    })
+}, 200)

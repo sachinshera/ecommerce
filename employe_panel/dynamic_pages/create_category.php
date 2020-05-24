@@ -8,10 +8,12 @@ echo '  <div class="row animated fadeIn">
                 <h5>Create Category</h5>
             </div>
             <div class="card-body">
-                <form>
+                <form id="category_form">
                     <input type="text" class="form-control" placeholder="Mobiles">
-                    <button type="button" class="btn btn-primary mt-3 mx-3"> <i class="fa fa-plus"> </i> Add Field</button>
-                    <button type="button" class="btn btn-danger mt-3"> <i class="fa fa-save mx-1"> </i>Save</button>
+                    <div id="add_input"> </div>
+                    <button type="button" class="btn btn-primary mt-3 mx-3 add_field_btn"> <i class="fa fa-plus"> </i> Add Field</button>
+                    <button type="submit" class="btn btn-danger mt-3"> <i class="fa fa-save mx-1"> </i>Save</button>
+                   
                 </form>
             </div>
         </div>

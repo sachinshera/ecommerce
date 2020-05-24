@@ -29,6 +29,28 @@ function requestPages(url) {
         },
         success: function (response) {
             $("#dyn_page").html(response);
+            $(".add_field_btn").click(function () {
+                $("#add_input").append(' <input type="text" class="form-control my-2" placeholder="Mobiles">');
+            });
+            $("#category_form").submit(function (e) {
+                e.preventDefault();
+                var values = [];
+                var i;
+                for (i = 0; i < $("#category_form input").length; i++) {
+                    values[i] = $("#category_form input")[i].value;
+                };
+                var obj = JSON.stringify(values);
+                $.ajax({
+                    type: "POST",
+                    url: "php/create_category.php",
+                    data: {
+                        data: obj
+                    },
+                    success: function (response) {
+                        document.write(response);
+                    }
+                })
+            })
         }
     })
 }

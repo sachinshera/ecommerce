@@ -59,4 +59,23 @@
     background-color:white !important;
     border: none !important;
 }
+/* width */
+.category_list::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+.category_list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+.category_list::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+.category_list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 /* page coding */

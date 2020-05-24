@@ -85,7 +85,7 @@ setTimeout(function () {
                 for (var i = 0; i < category_list.length; i++) {
                     var id = category_list[i].id;
                     var cat_name = category_list[i].category_name;
-                    $(".category_list").append('<div clas="list-group">  <div class="list-group-item my-2">  <span class="mr-3"> ' + id + ' </span> ' + cat_name + '  <span class="fa fa-trash close mx-2" style="font-size:20px"> </span> <span class="fa fa-edit close mx-2" style="font-size:20px"> </span>  </div> </div>');
+                    $(".category_list").append('<div clas="list-group">  <div class="list-group-item my-2">  <span class="mr-3 "> ' + id + ' </span> ' + cat_name + '  <span class="fa fa-trash close mx-2 text-primary" style="font-size:20px"> </span> <span class="fa fa-edit close mx-2 text-danger" style="font-size:20px"> </span>  </div> </div>');
                 }
             }
         });

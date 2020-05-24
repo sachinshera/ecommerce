@@ -2,8 +2,10 @@
 $(document).ready(function () {
     $(".sidebar ul li").each(function () {
         $(this).click(function () {
+            $(".sidebar ul li").removeClass("active");
             var url = $(this).attr("data-url");
             requestPages(url);
+            $(this).addClass("active");
         })
     })
 });

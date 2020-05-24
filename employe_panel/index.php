@@ -16,8 +16,6 @@
     <!-- ext css -->
     <link rel="stylesheet" href="css/index.css">
     <!-- ext css -->
-
-
     <title>Ecommerce project</title>
 </head>
 
@@ -31,9 +29,9 @@
                 <i class="fa fa-angle-down ml-2"></i>
             </button>
             <ul class="collapse  show " id="stock_list">
-                <li class="collapse-item" data-url="create_category.php">Create catogories</li>
-                <li class="collapse-item" data-url="create_brands.php">Create brands</li>
-                <li class="collapse-item" data-url="create_products.php">Create products</li>
+                <li class="collapse-item" data-url="create_category.php" id="one">Create catogories</li>
+                <li class="collapse-item " data-url="create_brands.php">Create brands</li>
+                <li class="collapse-item " data-url="create_products.php">Create products</li>
 
             </ul>
         </div>
@@ -49,6 +47,11 @@
     </div>
     <!-- ext js page  -->
     <script src="js/index.js"> </script>
+    <script>
+        $(document).ready(function() {
+            $("#one").click();
+        })
+    </script>
     <!-- ext js page -->
 
 </body>

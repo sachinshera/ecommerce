@@ -27,7 +27,6 @@ echo '  <div class="row animated fadeIn">
                 <h5>Category list</h5>
             </div>
             <div class="card-body">
-
             </div>
         </div>
     </div>

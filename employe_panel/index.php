@@ -29,9 +29,9 @@
                 <i class="fa fa-angle-down ml-2"></i>
             </button>
             <ul class="collapse  show " id="stock_list">
-                <li class="collapse-item" data-url="create_category.php" id="one">Create catogories</li>
-                <li class="collapse-item " data-url="create_brands.php">Create brands</li>
-                <li class="collapse-item " data-url="create_products.php">Create products</li>
+                <li class="collapse-item" data-url="create_category_design.php" id="one">Create catogories</li>
+                <li class="collapse-item " data-url="create_brands_design.php">Create brands</li>
+                <li class="collapse-item " data-url="create_products_design.php">Create products</li>
 
             </ul>
         </div>

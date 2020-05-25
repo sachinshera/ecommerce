@@ -29,7 +29,9 @@ function requestPages(url) {
         },
         success: function (response) {
             $("#dyn_page").html(response);
-            show_category_list();
+            if (url == "create_category_design.php") {
+                show_category_list();
+            }
             $(".add_field_btn").click(function () {
                 $("#add_input").append(' <input type="text" class="form-control my-2" placeholder="Mobiles">');
             });

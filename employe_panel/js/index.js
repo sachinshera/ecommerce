@@ -29,6 +29,7 @@ function requestPages(url) {
         },
         success: function (response) {
             $("#dyn_page").html(response);
+            show_category_list();
             $(".add_field_btn").click(function () {
                 $("#add_input").append(' <input type="text" class="form-control my-2" placeholder="Mobiles">');
             });
@@ -75,7 +76,9 @@ function requestPages(url) {
     })
 }
 // retrive category list
-setTimeout(function () {
+setTimeout(function () { show_category_list(); }, 200)
+
+function show_category_list() {
     $(document).ready(function () {
         $.ajax({
             type: "POST",
@@ -85,9 +88,87 @@ setTimeout(function () {
                 for (var i = 0; i < category_list.length; i++) {
                     var id = category_list[i].id;
                     var cat_name = category_list[i].category_name;
-                    $(".category_list").append('<div clas="list-group">  <div class="list-group-item my-2">  <span class="mr-3 "> ' + id + '. </span>  ' + cat_name + '  <span class="fa fa-trash close mx-2 text-primary" style="font-size:20px"> </span> <span class="fa fa-edit close mx-2 text-danger" style="font-size:20px"> </span>  </div> </div>');
+                    var list_group = document.createElement("div");
+                    list_group.className = "list-group";
+                    var list_item = document.createElement("div");
+                    list_item.className = "list-group-item my-2";
+                    var id_span = document.createElement("span");
+                    id_span.className = "mr-3 id";
+                    id_span.innerHTML = id;
+                    var name_span = document.createElement("span");
+                    name_span.innerHTML = cat_name;
+                    name_span.className = "name";
+                    var del_span = document.createElement("span");
+                    del_span.className = "fa fa-trash  del_icon close mx-2 text-primary";
+                    var edit_span = document.createElement("span");
+                    edit_span.className = "fa fa-edit  edit close mx-2 text-danger";
+                    var save_span = document.createElement("span");
+                    save_span.className = "fa fa-save d-none save close mx-2 text-danger";
+                    list_group.append(list_item);
+                    list_item.append(id_span);
+                    list_item.append(name_span);
+                    list_item.append(del_span);
+                    list_item.append(edit_span);
+                    list_item.append(save_span);
+                    $(".category_list").append(list_group);
+                    // edit category name function
+                    $(edit_span).click(function () {
+                        var parent = this.parentElement;
+                        var this_id = parent.getElementsByClassName("id")[0].innerHTML;
+                        var this_name = parent.getElementsByClassName("name")[0];
+                        var save_icon = parent.getElementsByClassName("save")[0];
+                        var edit_icon = parent.getElementsByClassName("edit")[0];
+                        this_name.contentEditable = true;
+                        this_name.focus();
+                        $(save_icon).removeClass("d-none");
+                        $(this).addClass("d-none");
+                        this_name.style.padding = "5px 25px";
+                        $(save_icon).click(function () {
+                            this_name.contentEditable = false;
+                            this_name.blur();
+                            this_name.style.padding = "0px 0px";
+                            $(this).addClass("d-none");
+                            $(edit_icon).removeClass("d-none");
+                            $.ajax({
+                                type: "POST",
+                                url: "php/edit_cate_name.php",
+                                data: {
+                                    id: this_id, name: this_name.innerHTML
+                                },
+                                cache: false,
+                                success: function (response) {
+                                    alert(response);
+                                },
+                                error: function (response) {
+                                    alert(response);
+                                }
+                            })
+                        })
+                    });
+                    // edit category name function
+                    // category delete function 
+                    $(del_span).click(function () {
+                        var parent = this.parentElement;
+                        var this_id = parent.getElementsByClassName("id")[0].innerHTML;
+                        var this_name = parent.getElementsByClassName("name")[0];
+                        $.ajax({
+                            type: "POST",
+                            url: "php/cate_delete.php",
+                            data: {
+                                id: this_id
+                            },
+                            cache: false,
+                            success: function (response) {
+                                alert(response);
+                                if (response.trim() == "successfully") {
+                                    parent.remove();
+                                }
+                            }
+
+                        })
+                    })
                 }
             }
         });
     })
-}, 200)
+};

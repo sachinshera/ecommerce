@@ -16,7 +16,7 @@
     <!-- ext css -->
     <link rel="stylesheet" href="css/index.css">
     <!-- ext css -->
-    <title>Ecommerce project</title>
+    <title>EmployePanel</title>
 </head>
 
 <body>

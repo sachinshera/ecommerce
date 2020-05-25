@@ -47,6 +47,7 @@
     </div>
     <!-- ext js page  -->
     <script src="js/index.js"> </script>
+    <script src="js/brands.js"></script>
     <script>
         $(document).ready(function() {
             $("#one").click();

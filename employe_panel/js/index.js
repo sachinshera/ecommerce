@@ -35,6 +35,10 @@ function requestPages(url) {
             $(".add_field_btn").click(function () {
                 $("#add_input").append(' <input type="text" class="form-control my-2" placeholder="Mobiles">');
             });
+            // add brand input field
+            $(".add_brand_btn").click(function () {
+                $("#add_brand_fields").append('<input type="text" class="form-control mb-3" placeholder="Nokia">');
+            });
             $("#category_form").submit(function (e) {
                 e.preventDefault();
                 var values = [];
@@ -55,6 +59,7 @@ function requestPages(url) {
                     success: function (response) {
                         if (response.trim() == "your data has been saved successfully") {
                             var design = '<div class="alert alert-success mt-3">  ' + response + ' <i class="fa fa-times close float-right" data-dismiss="alert"> </i> </div>';
+                            show_category_list();
                             $("#category_msg").html(design);
                         }
                         else if (response.trim() = "your data has not, please try again later !") {
@@ -73,6 +78,61 @@ function requestPages(url) {
                         }, 4000)
                     }
                 })
+            });
+            $("#create_brand_form").submit(function (event) {
+                event.preventDefault();
+                var category = $(".selected_brand").val();
+                if (category == "") {
+                    var design = '<div class="alert alert-warning mt-3">  You have to choose a category <i class="fa fa-times close float-right" data-dismiss="alert"> </i> </div>';
+                    show_category_list();
+                    $("#brand_msg").html(design);
+                    setTimeout(function () {
+                        $("#brand_msg").html("");
+                    }, 4000)
+
+                }
+                else {
+                    var values = [];
+                    var i;
+                    for (i = 0; i < $("#create_brand_form input").length; i++) {
+                        values[i] = $("#create_brand_form input")[i].value;
+                    };
+                    var obj = JSON.stringify(values);
+                    $.ajax({
+                        type: "POST",
+                        url: "php/create_brand.php",
+                        data: {
+                            data: obj, category: category
+                        },
+                        cache: false,
+                        beforeSend: function () {
+                            $("#header_spinner").removeClass("d-none");
+                        },
+                        success: function (response) {
+                            $("#header_spinner").addClass("d-none");
+                            if (response.trim() == "your data has been saved successfully") {
+                                var design = '<div class="alert alert-success mt-3">  ' + response + ' <i class="fa fa-times close float-right" data-dismiss="alert"> </i> </div>';
+                                show_category_list();
+                                $("#brand_msg").html(design);
+                            }
+                            else if (response.trim() = "your data has not, please try again later !") {
+                                var design = '<div class="alert alert-warning mt-3">  ' + response + ' <i class="fa fa-times close float-right" data-dismiss="alert"> </i> </div>';
+                                $("#brand_msg").html(design);
+                            }
+                            else {
+                                var design = '<div class="alert alert-warning mt-3"> somthing went wrong plese contact your administrator   <i class="fa fa-times close float-right" data-dismiss="alert"> </i> </div>';
+                                $("#brand_msg").html(design);
+                            }
+
+                            setTimeout(function () {
+                                $("#brand_msg").html("");
+                                $("#create_brand_form").trigger("reset");
+                                $("#add_brand_fields").html("");
+                            }, 4000)
+                        }
+                    })
+                }
+
             })
         }
     })
@@ -81,6 +141,7 @@ function requestPages(url) {
 setTimeout(function () { show_category_list(); }, 200)
 
 function show_category_list() {
+    $(".category_list").html("");
     $(document).ready(function () {
         $.ajax({
             type: "POST",

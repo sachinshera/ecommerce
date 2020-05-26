@@ -32,6 +32,7 @@ function requestPages(url) {
             if (url == "create_category_design.php") {
                 show_category_list();
             }
+            // add catogories input field
             $(".add_field_btn").click(function () {
                 $("#add_input").append(' <input type="text" class="form-control my-2" placeholder="Mobiles">');
             });
@@ -79,6 +80,7 @@ function requestPages(url) {
                     }
                 })
             });
+            // create brand list 
             $("#create_brand_form").submit(function (event) {
                 event.preventDefault();
                 var category = $(".selected_brand").val();
@@ -133,6 +135,26 @@ function requestPages(url) {
                     })
                 }
 
+            });
+            // show brand ist and category 
+            $(".selected_brand").on("change", function () {
+                var selected = $(this).val();
+                $(".show_brand_list").html("");
+                $.ajax({
+                    type: "POST",
+                    url: "php/show_brand.php",
+                    data: { category: selected },
+                    cache: false,
+                    success: function (response) {
+                        var json = JSON.parse(response);
+                        for (i = 0; i < json.length; i++) {
+                            var category_name = json[i].category_name;
+                            var brand_name = json[i].brand_name;
+                            $(".show_brand_list").append('<tr> <td> ' + brand_name + ' </td> <td> ' + category_name + ' </td> </tr>')
+                        }
+                    }
+
+                })
             })
         }
     })

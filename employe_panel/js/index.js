@@ -9,7 +9,7 @@ $(document).ready(function () {
         })
     })
 });
-// request pages
+// request dyanmic pages pages 
 function requestPages(url) {
     $.ajax({
         type: "POST",
@@ -32,14 +32,17 @@ function requestPages(url) {
             if (url == "create_category_design.php") {
                 show_category_list();
             }
-            // add catogories input field
+            // add catogories input field 
             $(".add_field_btn").click(function () {
                 $("#add_input").append(' <input type="text" class="form-control my-2" placeholder="Mobiles">');
             });
+            // add catogories input field 
             // add brand input field
             $(".add_brand_btn").click(function () {
                 $("#add_brand_fields").append('<input type="text" class="form-control mb-3" placeholder="Nokia">');
             });
+            // add brand input field
+            // sending data to create category.php page 
             $("#category_form").submit(function (e) {
                 e.preventDefault();
                 var values = [];
@@ -80,7 +83,8 @@ function requestPages(url) {
                     }
                 })
             });
-            // create brand list 
+            // sending data to create category.php page 
+            // create brand list  and sending data to create_brand.php page 
             $("#create_brand_form").submit(function (event) {
                 event.preventDefault();
                 var category = $(".selected_brand").val();
@@ -136,6 +140,7 @@ function requestPages(url) {
                 }
 
             });
+            // create brand list and sendng data to create_brand.php page 
             // show brand ist and category 
             $(".selected_brand").on("change", function () {
                 var selected = $(this).val();
@@ -156,12 +161,13 @@ function requestPages(url) {
 
                 })
             })
+            // show brand ist and category
         }
     })
 }
 // retrive category list
 setTimeout(function () { show_category_list(); }, 200)
-
+// show category function 
 function show_category_list() {
     $(".category_list").html("");
     $(document).ready(function () {
@@ -252,8 +258,10 @@ function show_category_list() {
 
                         })
                     })
+                    // delete category function 
                 }
             }
         });
     })
 };
+// show category function

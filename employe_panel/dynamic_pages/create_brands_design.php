@@ -59,10 +59,7 @@ if ($response) {
 
 echo '
 </select>
-<table class="table table-bordered ">
-<th> Brand name  </th> <th> Category name  </th>
-<table class="show_brand_list table table-bordered "> </table>
-</table>
+<table class="table table-bordered show_brand_list">
 			</div>
 			</div>
 		</div>

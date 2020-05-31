@@ -30,8 +30,8 @@
             </button>
             <ul class="collapse  show " id="stock_list">
                 <li class="collapse-item" data-url="create_category_design.php" id="one">Create catogories</li>
-                <li class="collapse-item " data-url="create_brands_design.php">Create brands</li>
-                <li class="collapse-item " data-url="create_products_design.php">Create products</li>
+                <li class="collapse-item " data-url="create_brands_design.php" id="two">Create brands</li>
+                <li class="collapse-item " data-url="create_products_design.php" id="three">Create products</li>
 
             </ul>
         </div>
@@ -50,7 +50,7 @@
     <script src="js/brands.js"></script>
     <script>
         $(document).ready(function() {
-            $("#one").click();
+            $("#two").click();
         })
     </script>
     <!-- ext js page -->

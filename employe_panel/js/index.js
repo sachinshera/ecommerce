@@ -144,19 +144,112 @@ function requestPages(url) {
             // show brand ist and category 
             $(".selected_brand").on("change", function () {
                 var selected = $(this).val();
-                $(".show_brand_list").html("");
+                var all_option = $(this).html().replace('			<option value="" choose="" category"="">Choose Category</option>', '').replace('<option value="' + selected + '"> ' + selected + ' </option>', '');
+
                 $.ajax({
                     type: "POST",
                     url: "php/show_brand.php",
                     data: { category: selected },
                     cache: false,
-                    success: function (response) {
+                    beforeSend: function () {
+
+                    },
+                    success: function load_content(response) {
+                        $(".show_brand_list").html("");
                         var json = JSON.parse(response);
+                        var table = $(".show_brand_list");
+                        var brand_name_td = document.createElement("td");
+                        brand_name_td.innerHTML = "<b> Brand name </b>";
+                        var category_name_td = document.createElement("td");
+                        category_name_td.innerHTML = "<b> Category name </b>";
+                        var edit_brand_icon = document.createElement("td");
+                        edit_brand_icon.innerHTML = "<b> Edit </b>";
+                        var delete_brand_icon = document.createElement("td");
+                        delete_brand_icon.innerHTML = "<b> Delete </b>";
+                        table.append(brand_name_td);
+                        table.append(category_name_td);
+                        table.append(edit_brand_icon);
+                        table.append(delete_brand_icon);
                         for (i = 0; i < json.length; i++) {
                             var category_name = json[i].category_name;
                             var brand_name = json[i].brand_name;
-                            $(".show_brand_list").append('<tr> <td> ' + brand_name + ' </td> <td> ' + category_name + ' </td> </tr>')
+                            var trr = document.createElement("tr");
+                            var brand_name_list = document.createElement("td");
+                            brand_name_list.className = "brand_name_list";
+                            brand_name_list.innerHTML = brand_name;
+                            var category_name_list = document.createElement("td");
+                            category_name_list.className = "category_name_list";
+                            category_name_list.innerHTML = category_name;
+                            var brand_edit = document.createElement("td");
+                            brand_edit.innerHTML = "<i class='fa fa-edit'data-brand='" + brand_name + "' data-category='" + category_name + "'> </i>";
+                            brand_edit.style.cursor = "pointer";
+                            var brand_save = document.createElement("i");
+                            brand_save.className = "fa fa-save d-none save_brand";
+                            brand_edit.append(brand_save);
+                            var brand_delete = document.createElement("td");
+                            brand_delete.innerHTML = "<i class='fa fa-trash'> </i>";
+                            brand_delete.style.cursor = "pointer";
+                            trr.append(brand_name_list);
+                            trr.append(category_name_list);
+                            trr.append(brand_edit);
+                            trr.append(brand_delete);
+                            table.append(trr);
+                            // delete brand function 
+                            brand_delete.onclick = function () {
+                                var parent = this.parentElement;
+                                var brand_name = parent.getElementsByClassName("brand_name_list")[0];
+                                var category_name = parent.getElementsByClassName("category_name_list")[0];
+                                $.ajax({
+                                    type: "POST",
+                                    url: "php/delete_brand.php",
+                                    data: { category: category_name.innerHTML, brand: brand_name.innerHTML },
+                                    cache: false,
+                                    success: function (response) {
+                                        parent.remove();
+                                    }
+                                })
+                            }
+                            // delete brand function 
+                            // edit brand and category
+                            brand_edit.onclick = function edit_brand() {
+                                var parent = this.parentElement;
+                                var this_icon = this.getElementsByTagName("i")[0];
+                                var brand_name = parent.getElementsByClassName("brand_name_list")[0];
+                                var category_name = parent.getElementsByClassName("category_name_list")[0];
+                                brand_name.contentEditable = true;
+                                brand_name.focus();
+                                this.innerHTML = "<i class='fa fa-save'data-brand='" + brand_name.innerHTML + "' data-category='" + category_name.innerHTML + "'> </i>";
+                                var attr_brand = this_icon.getAttribute("data-brand");
+                                var attr_category = this_icon.getAttribute("data-category");
+                                category_name.innerHTML = "<select id='edit_select' class='w-100'> <option> " + selected + " </option>" + all_option + " </select>";
+                                this.onclick = function () {
+                                    var edit_sel = $("#edit_select").val();
+                                    brand_name.contentEditable = false;
+                                    brand_name.blur();
+                                    category_name.innerHTML = edit_sel;
+                                    this.innerHTML = "<i class='fa fa-edit'data-brand='" + brand_name.innerHTML + "' data-category='" + category_name.innerHTML + "'> </i>";
+                                    category_name.innerHTML = edit_sel;
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "php/edit_brand.php",
+                                        data: {
+                                            new_brand: brand_name.innerHTML, old_brand: attr_brand,
+                                            new_category: edit_sel, old_category: attr_category
+                                        },
+                                        cache: false,
+                                        success: function (response) {
+                                            alert(response);
+
+
+                                        }
+                                    })
+
+                                }
+                            }
+                            // edit brand and category
                         }
+
+
                     }
 
                 })

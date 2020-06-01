@@ -9,7 +9,12 @@ if ($db->query($sel_table)) {
     for ($i = 0; $i < $length; $i++) {
         $store_data = "INSERT INTO brands(brand_name,category_name) VALUES('$data[$i]','$category')";
         if ($db->query($store_data)) {
-            $message = "your data has been saved successfully";
+
+            if (mkdir("../../stocks/" . $category . "/" . $data[$i])) {
+                $message = "your data has been saved successfully";
+            } else {
+                $message = "dr not created";
+            }
         } else {
             $message = "your data has not, please try again later !";
         }

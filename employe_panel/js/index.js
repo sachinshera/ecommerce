@@ -41,6 +41,30 @@ function requestPages(url) {
             $(".add_brand_btn").click(function () {
                 $("#add_brand_fields").append('<input type="text" class="form-control mb-3" placeholder="Nokia">');
             });
+            // cteate products page coding 
+            $(".selected_category").on("change", function (e) {
+                var selected = $(this).val();
+                $(".create_brand_list").html("");
+                $.ajax({
+                    type: "POST",
+                    url: "php/show_brand.php",
+                    data: { category: selected },
+                    cache: false,
+                    beforeSend: function () { },
+                    success: function (response) {
+                        $(".create_brand_list").append('<option>Choose brands</option>');
+                        var json = JSON.parse(response);
+                        for (i = 0; i < json.length; i++) {
+                            var category_name = json[i].category_name;
+                            var brand_name = json[i].brand_name;
+                            $(".create_brand_list").append('<option>' + brand_name + '</option>');
+                        }
+                    }
+
+                })
+            })
+            // cteate products page coding 
+
             // add brand input field
             // sending data to create category.php page 
             $("#category_form").submit(function (e) {

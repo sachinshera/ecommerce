@@ -38,9 +38,12 @@
         <!-- slide bar coding -->
         <!-- page coding  -->
         <div class="page">
-            <div class="container" id="dyn_page">
+            <div class="container-fluid" id="dyn_page">
 
             </div>
+            <!-- test -->
+
+            <!-- test -->
         </div>
         <!-- page coding  -->
 
@@ -50,7 +53,7 @@
     <script src="js/brands.js"></script>
     <script>
         $(document).ready(function() {
-            $("#two").click();
+            $("#three").click();
         })
     </script>
     <!-- ext js page -->

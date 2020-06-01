@@ -55,12 +55,26 @@ function requestPages(url) {
                         $(".create_brand_list").append('<option>Choose brands</option>');
                         var json = JSON.parse(response);
                         for (i = 0; i < json.length; i++) {
-                            var category_name = json[i].category_name;
                             var brand_name = json[i].brand_name;
                             $(".create_brand_list").append('<option>' + brand_name + '</option>');
                         }
                     }
 
+                })
+            });
+            $("#create_product_form").submit(function (event) {
+                event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "php/create_product.php",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    beforeSend: function () { },
+                    success: function (response) {
+                        alert(response);
+                    }
                 })
             })
             // cteate products page coding 

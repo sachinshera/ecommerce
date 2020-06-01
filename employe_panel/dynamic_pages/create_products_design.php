@@ -6,22 +6,22 @@ echo '  <div class="row  slideInDown">
 			<h3 class="my-3 text-center">Create products <i class="fa fa-circle-o-notch fa-spin close" style="font-size:18px"></i></h3>
 			</div>
 			<div class="card-body">
-				<form>
+				<form id="create_product_form">
 				<div class="row">
 				<div class="col-md-4 py-3" style="box-shadow:0px 0px  5px #ccc;border-radius:10px"> 
-				<select class="form-control mb-3 selected_category">
+				<select class="form-control mb-3 selected_category" name="category">
 				<option value=""choose category">Choose Category</option>';
 $response = $db->query("SELECT * FROM category");
 if ($response) {
-	while ($data = $response->fetch_assoc()) {
-		$cate_name = $data["category_name"];
-		echo  "<option value='" . $cate_name . "'> " . $cate_name . " </option>";
-	}
+    while ($data = $response->fetch_assoc()) {
+        $cate_name = $data["category_name"];
+        echo  "<option value='" . $cate_name . "'> " . $cate_name . " </option>";
+    }
 };
 echo '
 			</select>
 
-					<select class="form-control mb-3 create_brand_list">
+					<select class="form-control mb-3 create_brand_list" name="brand">
 						<option>Choose brands</option>
 					</select>
 				</div>
@@ -33,7 +33,7 @@ echo '
                         Products title
                     </div>
                 </div>
-                <input type="text" class="form-control" placeholder="Products title">
+                <input type="text" class="form-control" placeholder="Products title" name="product_title">
             </div>
             <div class="input-group my-3">
                 <div class="input-group-prepend">
@@ -41,7 +41,7 @@ echo '
                         Products description
                     </div>
                 </div>
-                <textarea class="form-control" style="height:100px;"> </textarea>
+                <textarea class="form-control" style="height:100px;" name="product_desc"> </textarea>
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -51,7 +51,7 @@ echo '
                                 Products Price
                             </div>
                         </div>
-                        <input type="number" class="form-control" placeholder="Products price">
+                        <input type="number" class="form-control" placeholder="Products price" name="product_price">
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@ echo '
                                 Products Quantity
                             </div>
                         </div>
-                        <input type="number" class="form-control" placeholder="Products Quantity">
+                        <input type="number" class="form-control" placeholder="Products Quantity" name="product_quant">
                     </div>
 				</div>
 				
@@ -79,7 +79,7 @@ echo '
                                 150x150 px
                             </div>
                             <div class="card-footer">
-                                <input type="file" accept="image/*" class="form-control">
+                                <input type="file" accept="image/*" class="form-control" name="thumb">
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@ echo '
                                 274x274 px
                             </div>
                             <div class="card-footer">
-                                <input type="file" accept="image/*" class="form-control">
+                                <input type="file" accept="image/*" class="form-control" name="front">
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@ echo '
                                 447x447 px
                             </div>
                             <div class="card-footer">
-                                <input type="file" accept="image/*" class="form-control">
+                                <input type="file" accept="image/*" class="form-control" name="top">
                             </div>
                         </div>
                     </div>
@@ -123,7 +123,7 @@ echo '
                                 447x447 px
                             </div>
                             <div class="card-footer">
-                                <input type="file" accept="image/*" class="form-control">
+                                <input type="file" accept="image/*" class="form-control" name="bottom">
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,7 @@ echo '
                                 447x447 px
                             </div>
                             <div class="card-footer">
-                                <input type="file" accept="image/*" class="form-control">
+                                <input type="file" accept="image/*" class="form-control" name="left">
                             </div>
                         </div>
                     </div>
@@ -154,7 +154,7 @@ echo '
                                 447x447 px
                             </div>
                             <div class="card-footer">
-                                <input type="file" accept="image/*" class="form-control">
+                                <input type="file" accept="image/*" class="form-control" name="right">
                             </div>
                         </div>
                     </div>

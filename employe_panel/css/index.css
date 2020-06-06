@@ -60,22 +60,27 @@
     border: none !important;
 }
 /* width */
-.category_list::-webkit-scrollbar {
-    width: 10px;
+::-webkit-scrollbar {
+    width: 10px !important;
   }
   
   /* Track */
-.category_list::-webkit-scrollbar-track {
-    background: #f1f1f1;
+::-webkit-scrollbar-track {
+    background: #fff !important ;
   }
   
   /* Handle */
-.category_list::-webkit-scrollbar-thumb {
-    background: #888;
+::-webkit-scrollbar-thumb {
+    background: #323232 !important;
   }
   
   /* Handle on hover */
-.category_list::-webkit-scrollbar-thumb:hover {
-    background: #555;
+::-webkit-scrollbar-thumb:hover {
+    background: #555 !important;
   }
 /* page coding */
+/* brand page coding  */
+.update_brand_box{
+    box-shadow: 0px 0px 15px 0px #ccc !important;
+}
+/* brand page coding */

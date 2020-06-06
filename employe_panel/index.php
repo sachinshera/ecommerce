@@ -23,6 +23,9 @@
     <div class="container-fluid">
         <!-- slide bar coding  -->
         <div class="sidebar">
+            <button type="button" class="btn  bg-white w-100 text-left mb-3" style="font-size:20px">
+                <i class="fas fa-id-card"></i> Branding Update
+            </button>
             <button type="button" class="btn stock_btn bg-white w-100 text-left" style="font-size:20px" data-toggle="collapse" data-target="#stock_list">
                 <i class="fa fa-shopping-cart"></i>
                 Stock Update
@@ -37,12 +40,47 @@
         </div>
         <!-- slide bar coding -->
         <!-- page coding  -->
-        <div class="page">
+        <div class="page" style="overflow:scroll">
             <div class="container-fluid" id="dyn_page">
 
             </div>
             <!-- test -->
+            <form id="brand_form">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 update_brand_box py-3">
+                        <h4 class="text-center mb-3">Update brand details</h4>
+                        <label for="brand_name" style="font-weight: bold">Enter your brand name</label>
+                        <input type="text" placeholder="brand name" class="form-control mb-3" id="brand_name" name="brand_name" norequired="no">
+                        <label for="logo" style="font-weight: bold">Logo</label>
+                        <input type="file" accept="image/*" class="form-control mb-3" id="logo" placeholder="choose your logo" name="logo" norequired="no">
+                        <label for="domain" style="font-weight: bold">Domain Name</label>
+                        <input type="website" class="form-control mb-3" id="domain" placeholder="Enter your domain" name="domain" norequired="no">
+                        <label for="email" style="font-weight: bold">Enter your email address</label>
+                        <input type="email" class="form-control mb-3" id="email" placeholder="Enter your email" name="email" norequired="no">
+                        <label for="socialaccounts" style="font-weight: bold">Social accounts</label>
+                        <input type="website" class="form-control mb-3" id="socialaccounts" placeholder="facebook url" name="facebook">
+                        <input type="website" class="form-control mb-3" id="socialaccounts" placeholder="twitter url" name="twitter">
+                        <input type="website" class="form-control mb-3" id="socialaccounts" placeholder="instagram url" name="instagram">
+                        <label for="address" style="font-weight: bold">Address</label><small class="float-right">max 1500</small>
+                        <textarea name="address" id="address" cols="30" rows="5" class="form-control mb-3" norequired="no" maxlength="1500" minlength="100"></textarea>
+                        <label for="phone" style="font-weight: bold">Phone Number</label>
+                        <input type="text" name="phone" id="phone" class="form-control mb-3" maxlength="12" minlength="10" norequired="no">
+                        <label for="about" style="font-weight: bold">About us</label><small class="float-right">max 10000</small>
+                        <textarea name="about" id="about" cols="30" rows="7" class="form-control mb-3" norequired="no" maxlength="10000" minlength="1000"></textarea>
+                        <label for="policy" style="font-weight: bold">Privacy Policy</label><small class="float-right">max 10000</small>
+                        <textarea name="policy" id="policy" cols="30" rows="12" class="form-control mb-3" norequired="no" maxlength="10000" minlength="1000"></textarea>
+                        <label for="cookies" style="font-weight: bold">Cookies Policy</label> <small class="float-right">max 10000</small>
+                        <textarea name="cookies" id="cookies" cols="30" rows="12" class="form-control mb-3" norequired="no" maxlength="10000" minlength="1000"></textarea>
+                        <label for="terms" style="font-weight: bold"><span class="float-left">Terms and conditions </span></label> <small class="float-right">max 10000</small>
+                        <textarea name="terms" id="terms" cols="30" rows="12" class="form-control mb-3" norequired="no" maxlength="10000" minlength="1000"></textarea>
+                        <button type="submit" class="btn btn-dark text-light">Update details</button>
 
+                    </div>
+                    <div class="col-md-3"></div>
+
+                </div>
+            </form>
             <!-- test -->
         </div>
         <!-- page coding  -->
@@ -50,10 +88,34 @@
     </div>
     <!-- ext js page  -->
     <script src="js/index.js"> </script>
-    <script src="js/brands.js"></script>
     <script>
         $(document).ready(function() {
-            $("#three").click();
+            $("#brand_form").submit(function(event) {
+                event.preventDefault();
+                var logo = document.querySelector("#logo");
+                var file = logo.files[0];
+                if (file.size < 200000) {
+                    $.ajax({
+                        type: "POST",
+                        url: "php/branding.php",
+                        data: new FormData(this),
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: function(response) {
+                            document.write(response);
+                        }
+                    });
+                } else {
+                    alert("please choose logo  size less than 200kb");
+                }
+
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#threeeee").click();
         })
     </script>
     <!-- ext js page -->

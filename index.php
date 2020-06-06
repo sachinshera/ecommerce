@@ -18,9 +18,10 @@
 </head>
 
 <body>
-    <div class="jumbotron">
-        <h1 class=" animated slideInLeft">sjhfgdsg</h1>
-    </div>
+    <header>
+        <?php include("php/nav.php"); ?>
+        </nav>
+    </header>
     <!-- ext js page  -->
     <script src="js/index.js"> </script>
     <!-- ext js page -->

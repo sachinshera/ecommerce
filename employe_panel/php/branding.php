@@ -1,8 +1,16 @@
 <?php
 require_once("../../db.php");
 $file = $_FILES["logo"];
-$file_loc = $file["tmp_name"];
-$logo = addslashes(file_get_contents($file_loc));
+if ($file["name"] != "") {
+    $file_loc = $file["tmp_name"];
+    $logo = addslashes(file_get_contents($file_loc));
+} else {
+    $response = $db->query("SELECT logo FROM branding");
+    if ($response) {
+        $logo_data = $response->fetch_assoc();
+        $logo = addslashes($logo_data);
+    }
+}
 $brand_name = addslashes($_POST["brand_name"]);
 $domain = addslashes($_POST["domain"]);
 $email = addslashes($_POST["email"]);
@@ -17,14 +25,20 @@ $cookies = addslashes($_POST["cookies"]);
 $terms = addslashes($_POST["terms"]);
 $check_table = "SELECT * FROM branding";
 if ($db->query($check_table)) {
-    $insert_data = "INSERT INTO branding (logo,brand_name,domain,email,facebook,twitter,instagram,address,phone,about,policy,cookies,terms)
-    VALUES('$logo','$brand_name','$domain','$email','$facebook','$twitter','$instagram','$address','$phone','$about','$policy','$cookies','$terms')
-    ";
-    if ($db->query($insert_data)) {
-        echo "data inserted successfully";
+    $update_data = "UPDATE branding SET  logo = '$logo',brand_name = '$brand_name' , domain = '$domain', email = '$email', facebook = '$facebook', twitter = '$twitter', address = '$address',phone = '$phone',about = '$about',policy = '$policy',cookies = '$cookies',terms = '$terms'";
+    if ($db->query($update_data)) {
+        echo "data updated successfully";
     } else {
-        echo "data inserting failed" . $db->error;
+        echo "data updated failed" . $db->error;
     }
+    // $insert_data = "INSERT INTO branding (logo,brand_name,domain,email,facebook,twitter,instagram,address,phone,about,policy,cookies,terms)
+    // VALUES('$logo','$brand_name','$domain','$email','$facebook','$twitter','$instagram','$address','$phone','$about','$policy','$cookies','$terms')
+    // ";
+    // if ($db->query($insert_data)) {
+    //     echo "data inserted successfully";
+    // } else {
+    //     echo "data inserting failed" . $db->error;
+    // }
 } else {
     $create_table = "CREATE TABLE branding(
         id INT(11) NOT NULL AUTO_INCREMENT,

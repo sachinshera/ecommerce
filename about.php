@@ -17,7 +17,12 @@
     <!-- Bootstrap , Fontawesome and animate.css included in this file . -->
 
     <link rel="stylesheet" href="css/index.css">
-    <title>Ecommerce project</title>
+    <title> <?php $response = $db->query("SELECT * FROM branding");
+            if ($response) {
+                $data = $response->fetch_assoc();
+                echo $data["brand_name"] . "  |  ";
+            }
+            ?> About us</title>
 </head>
 
 <body>
@@ -25,6 +30,16 @@
         <?php include("php/nav.php"); ?>
         </nav>
     </header>
+    <section>
+        <div class="container py-3 mt-4" style=" box-shadow: 0px 0px 0px 2px #ccc;">
+            <?php $response = $db->query("SELECT * FROM branding");
+            if ($response) {
+                $data = $response->fetch_assoc();
+                echo $data["about"];
+            }
+            ?></div>
+
+    </section>
     <footer class="mt-4">
         <?php include("php/footer.php"); ?>
     </footer>

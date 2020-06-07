@@ -122,7 +122,7 @@ if ($db->query("SELECT * FROM branding")) {
                         <small>instagram</small>
                         <input type="website" class="form-control mb-3" id="socialaccounts" placeholder="instagram url" name="instagram" value=" <?php echo $instagram ?>">
                         <label for="address" style="font-weight: bold">Address</label><small class="float-right">max 1500</small>
-                        <textarea name="address" id="address" cols="30" rows="5" class="form-control mb-3" norequired="no" maxlength="1500" minlength="100"><?php echo $address ?></textarea>
+                        <textarea name="address" id="address" cols="30" rows="5" class="form-control mb-3" norequired="no" maxlength="1500" minlength="10"><?php echo $address ?></textarea>
                         <label for="phone" style="font-weight: bold">Phone Number</label>
                         <input type="text" name="phone" id="phone" class="form-control mb-3" maxlength="12" minlength="10" norequired="no" value="<?php echo $phone ?>">
                         <label for="about" style="font-weight: bold">About us</label><small class="float-right">max 10000</small>

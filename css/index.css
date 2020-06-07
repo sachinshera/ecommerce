@@ -1,0 +1,11 @@
+header{
+    box-shadow: 5px 0px 5px 5px #ccc;
+}
+footer{
+    box-shadow: 0px 0px 5px 0px #ccc;
+    background:#343A40;
+    padding-top: 5px;
+}
+.subscribe_box{
+background:#FFFFFF;
+}

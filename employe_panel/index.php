@@ -105,7 +105,7 @@ if ($db->query("SELECT * FROM branding")) {
                         <label for="brand_name" style="font-weight: bold">Enter your brand name</label>
                         <input type="text" placeholder="brand name" class="form-control mb-3" id="brand_name" name="brand_name" norequired="no" value=" <?php echo $brand_name ?>">
                         <div>
-                            <?php echo "<img style='width:80px' src='data:image/gif;base64," . base64_encode($logo) . "'> </img>" ?>
+                            <?php echo "<img style='width:80px;height:80px' src='data:image/gif;base64," . base64_encode($logo) . "'> </img>" ?>
 
                         </div>
                         <label for="logo" style="font-weight: bold">Logo</label>

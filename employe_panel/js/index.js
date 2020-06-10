@@ -1,6 +1,6 @@
 // request dynamic pages
 $(document).ready(function () {
-    $(".sidebar ul li").each(function () {
+    $(".sidebar ul li, .branding_info").each(function () {
         $(this).click(function () {
             $(".sidebar ul li").removeClass("active");
             var url = $(this).attr("data-url");
@@ -28,7 +28,11 @@ function requestPages(url) {
             );
         },
         success: function (response) {
+
             $("#dyn_page").html(response);
+            if (response.trim() == "branding_info.php") {
+                branding_info();
+            }
             if (url == "create_category_design.php") {
                 show_category_list();
             }
@@ -396,3 +400,41 @@ function show_category_list() {
     })
 };
 // show category function
+// branding function 
+function branding() {
+    alert("start");
+    $(document).ready(function () {
+        $("#brand_form").submit(function (event) {
+            var form = this;
+            alert();
+            event.preventDefault();
+            var logo = document.querySelector("#logo");
+            var file = logo.files[0];
+            if (logo.value != "") {
+                if (file.size < 200000) {
+                    send();
+                } else {
+                    alert("please choose logo  size less than 200kb");
+                }
+            } else {
+                send();
+            }
+
+            function send() {
+                $.ajax({
+                    type: "POST",
+                    url: "php/branding.php",
+                    data: new FormData(form),
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    success: function (response) {
+                        alert(response);
+                    }
+                });
+            }
+
+        })
+    })
+}
+// branding function

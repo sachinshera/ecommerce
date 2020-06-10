@@ -28,11 +28,7 @@ function requestPages(url) {
             );
         },
         success: function (response) {
-
             $("#dyn_page").html(response);
-            if (response.trim() == "branding_info.php") {
-                branding_info();
-            }
             if (url == "create_category_design.php") {
                 show_category_list();
             }
@@ -400,41 +396,4 @@ function show_category_list() {
     })
 };
 // show category function
-// branding function 
-function branding() {
-    alert("start");
-    $(document).ready(function () {
-        $("#brand_form").submit(function (event) {
-            var form = this;
-            alert();
-            event.preventDefault();
-            var logo = document.querySelector("#logo");
-            var file = logo.files[0];
-            if (logo.value != "") {
-                if (file.size < 200000) {
-                    send();
-                } else {
-                    alert("please choose logo  size less than 200kb");
-                }
-            } else {
-                send();
-            }
 
-            function send() {
-                $.ajax({
-                    type: "POST",
-                    url: "php/branding.php",
-                    data: new FormData(form),
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    success: function (response) {
-                        alert(response);
-                    }
-                });
-            }
-
-        })
-    })
-}
-// branding function

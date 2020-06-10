@@ -118,3 +118,39 @@ echo '</textarea>
 
 </div>
 </form>';
+echo '
+<script>
+$(document).ready(function () {
+    $("#brand_form").submit(function (event) {
+        var form = this;
+        event.preventDefault();
+        var logo = document.querySelector("#logo");
+        var file = logo.files[0];
+        if (logo.value != "") {
+            if (file.size < 200000) {
+                send();
+            } else {
+                alert("please choose logo  size less than 200kb");
+            }
+        } else {
+            send();
+        }
+
+        function send() {
+            $.ajax({
+                type: "POST",
+                url: "php/branding.php",
+                data: new FormData(form),
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (response) {
+                    alert(response);
+                }
+            });
+        }
+
+    })
+})
+
+</script>';
